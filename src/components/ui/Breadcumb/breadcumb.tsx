@@ -1,5 +1,5 @@
-import React from "react";
 import svgBre from "@/assets/breadcumb.svg";
+import React from "react";
 type Props = {
   items: string[];
 };

@@ -3,6 +3,7 @@ import Container from "../container/Container";
 import Slider from "react-slick";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { TypeProduct } from "@/models/model";
 
 const NewArrival = () => {
   const settings = {
@@ -51,7 +52,7 @@ const NewArrival = () => {
       <h1 className="mb-4 font-semibold text-3xl">New Arrivals</h1>
       <div className="slider-container">
         <Slider {...settings}>
-          {newProducts.map((e) => (
+          {newProducts.map((e:TypeProduct) => (
             <div key={e._id}>
               <Card item={e}></Card>
             </div>

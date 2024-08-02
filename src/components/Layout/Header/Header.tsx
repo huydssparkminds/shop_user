@@ -11,6 +11,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 
+interface Route {
+  title: string,
+  path: string,
+}
+
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
 
@@ -43,7 +48,7 @@ const Header = () => {
 
         <nav>
           <ul>
-            {NavRouter.map((e, i) => (
+            {NavRouter.map((e:Route, i:number) => (
               <li key={i}>
                 <Link
                   className={clsx({

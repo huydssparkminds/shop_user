@@ -56,7 +56,7 @@ const MainProduct = () => {
             <Label htmlFor="countries" value="Select PerPage" />
           </div>
           <Select id="countries" onChange={handleSetPerPage} required>
-            {PERPAGES.map((perpage, i) => (
+            {PERPAGES.map((perpage:number, i:number) => (
               <option value={perpage} key={i}>
                 {perpage}
               </option>

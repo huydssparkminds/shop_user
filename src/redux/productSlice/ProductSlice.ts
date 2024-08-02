@@ -11,7 +11,7 @@ type TypeInitProps = {
 
 export const getAllproducts = createAsyncThunk(
   "product/getAll",
-  async (data, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const response = await sanphamApi.getAll();
       if (response && response.data) {

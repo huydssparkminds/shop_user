@@ -1,6 +1,5 @@
 import Container from "@/components/block/container/Container";
 import Breadcumb from "@/components/ui/Breadcumb/breadcumb";
-import React from "react";
 
 const ProductDetail = () => {
 
