@@ -8,7 +8,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useSelector } from "react-redux";
-import type { TypeUser } from "@/models/model";
 
 const userSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email").required(),
@@ -16,7 +15,7 @@ const userSchema = Yup.object().shape({
   password: Yup.string().matches(
     REGEX_PASSWORD,
     "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number"
-  ),
+  ).required(),
 
   confirmpassword: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords must match") // Loại bỏ null
@@ -28,7 +27,15 @@ const userSchema = Yup.object().shape({
     .required("Username is required"),
 });
 
+  interface RegisterUser {
+    password: string;
+    email: string;
+    confirmpassword: string;
+    username: string;
+  }
 const Register = () => {
+
+
  
   const loading = useSelector((state: RootState) => state.user.loading);
 
@@ -40,7 +47,7 @@ const Register = () => {
     resolver: yupResolver(userSchema)
   });
 
-  const onSubmit = async (data: TypeUser) => {
+  const onSubmit = async (data: RegisterUser) => {
     const response = await authApi.register(data)
     console.log("🚀 ~ onSubmit ~ response:", response)
   };
