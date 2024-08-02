@@ -1,16 +1,14 @@
 import CustomInput from "@/components/ui/CustomInput/CustomInput";
 import { REGEX_PASSWORD } from "@/constant";
-import { TypeUser, TypeUserStore } from "@/models/model";
 import { RootState } from "@/redux/store";
-import { setLoading } from "@/redux/userSlice/UserSlice";
 import authApi from "@/services/authApi";
 import { Button, Spinner } from "flowbite-react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import type { TypeUser } from "@/models/model";
 
 const userSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email").required(),
@@ -31,8 +29,7 @@ const userSchema = Yup.object().shape({
 });
 
 const Register = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+ 
   const loading = useSelector((state: RootState) => state.user.loading);
 
   const {
@@ -43,7 +40,7 @@ const Register = () => {
     resolver: yupResolver(userSchema)
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: TypeUser) => {
     const response = await authApi.register(data)
     console.log("🚀 ~ onSubmit ~ response:", response)
   };

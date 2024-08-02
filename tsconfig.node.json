@@ -15,5 +15,5 @@
 		}
 
   },
-    "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx"],
 }

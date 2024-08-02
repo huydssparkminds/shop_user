@@ -1,4 +1,4 @@
-import { TypeUserStore } from "@/models/model";
+import type { TypeUserStore } from "@/models/model";
 import { createSlice } from "@reduxjs/toolkit";
 
 const userToken = localStorage.getItem("userToken") ?? null;

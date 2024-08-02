@@ -1,12 +1,12 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { TypeLoginUser } from "@/models/model";
+import type { TypeLoginUser } from "@/models/model";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setToken, setUser } from "@/redux/userSlice/UserSlice";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
-import { RootState } from "@/redux/store";
+import type { RootState } from "@/redux/store";
 import authApi from "@/services/authApi";
 import { toast } from "react-toastify";
 

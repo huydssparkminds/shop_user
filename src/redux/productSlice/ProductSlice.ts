@@ -1,4 +1,4 @@
-import { TypeProduct } from "@/models/model";
+import type { TypeProduct } from "@/models/model";
 import sanphamApi from "@/services/productApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
