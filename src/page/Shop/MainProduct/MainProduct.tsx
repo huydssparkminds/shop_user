@@ -51,7 +51,7 @@ const MainProduct = () => {
           onChange={handleSearchParam}
         />
 
-        <div className="w-40">
+        <div className=" md:w-[257px]">
           <div className="mb-2 block">
             <Label htmlFor="countries" value="Select PerPage" />
           </div>

@@ -16,7 +16,7 @@ interface option {
 
 export function CustomSelect({ className, optios, LabelName, name, onChange }: Props) {
   return (
-    <div className={clsx("max-w-md", className)}>
+    <div className={clsx("wfull md:max-w-[257px]", className)}>
       <div className="mb-2 block">
         <Label htmlFor={name} value={LabelName} />
       </div>

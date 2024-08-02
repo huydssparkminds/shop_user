@@ -3,25 +3,14 @@ import { IoIosStar } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TypeProduct } from "@/models/model";
-import { useCart } from "react-use-cart";
-import { toast } from "react-toastify";
+import useAddToCart from "@/utils/handleAddToCart";
 
 type CardProps = {
   item: TypeProduct;
 };
 
 const Card = ({ item }: CardProps) => {
-  const { addItem } = useCart();
-  const convertToCartItem = (product: TypeProduct) => ({
-    ...product,
-    id: product._id
-  });
-
-  const handleAddToCart = () => {
-    addItem(convertToCartItem(item))
-    toast.success("Thêm vào giỏ hàng thành công")
-  };
-  
+  const { addToCart } = useAddToCart();
 
   return (
     <div className={style.card}>
@@ -33,7 +22,7 @@ const Card = ({ item }: CardProps) => {
           </button>
         </div>
         <img alt="" src={item.linkImg} />
-        <button onClick={handleAddToCart} className={style.btnAddToCart}>
+        <button onClick={() => addToCart(item)} className={style.btnAddToCart}>
           ADD TO CART
         </button>
       </div>
