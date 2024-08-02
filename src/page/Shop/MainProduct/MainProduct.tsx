@@ -1,14 +1,44 @@
-import React from "react";
 import { CustomSelect } from "@/components/ui/CustomSelect/CustomSelect";
-
 import style from "./style.module.scss";
-import { Options_category } from "@/constant";
+import { Label, Select } from "flowbite-react";
+import { Options_category, PERPAGES } from "@/constant";
 import Card from "@/components/ui/Card/Card";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { Button } from "flowbite-react";
+import { useEffect, useMemo, useState } from "react";
+import { handlefilterCategory } from "@/utils/Feature";
+import { TypeProduct } from "@/models/model";
 
 const MainProduct = () => {
+  const [perPage, setPerPage] = useState<number>(8);
+  const [paramCategory, setParamCategory] = useState<string>('all');
+  const [filteredProducts, setFilteredProducts] = useState<TypeProduct[]>([]);
   const products = useSelector((state: RootState) => state.product.product);
+
+  const handleLoadMore = () => {
+    setPerPage((perPagePrev) => perPagePrev + 4);
+  };
+
+  const handleSetPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const target = parseInt(e.target.value, 10);
+    setPerPage(target);
+  };
+
+  const handleSearchParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const target = e.target.value;
+    setParamCategory(target);
+  };
+ 
+
+  useEffect(() => {
+    const datamoi = handlefilterCategory(products, paramCategory)
+    setFilteredProducts(datamoi);
+  },[products,paramCategory])
+
+  const loadMoreData = useMemo(() => {
+    return filteredProducts.slice(0, perPage);
+  }, [perPage,filteredProducts]);
 
   return (
     <div className={style.mainProdut}>
@@ -18,11 +48,36 @@ const MainProduct = () => {
           LabelName="Select Categories"
           optios={Options_category}
           className="flex-1"
+          onChange={handleSearchParam}
         />
+
+        <div className="w-40">
+          <div className="mb-2 block">
+            <Label htmlFor="countries" value="Select PerPage" />
+          </div>
+          <Select id="countries" onChange={handleSetPerPage} required>
+            {PERPAGES.map((perpage, i) => (
+              <option value={perpage} key={i}>
+                {perpage}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
 
       <div className={style.listProducts}>
-      {products && products.map((item,i) => <Card key={i} item={item} />)}
+        {loadMoreData &&
+          loadMoreData.map((item, i) => <Card key={i} item={item} />)}
+      </div>
+      <div className="w-full mt-10">
+        <Button
+          onClick={handleLoadMore}
+          className="mx-auto"
+          size={"lg"}
+          outline
+          gradientDuoTone="cyanToBlue">
+          Load More
+        </Button>
       </div>
     </div>
   );

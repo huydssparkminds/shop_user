@@ -1,4 +1,6 @@
+import Cart from "@/page/Cart/Cart";
 import HomePage from "@/page/HomePage";
+import ProductDetail from "@/page/ProductDetail/ProductDetail";
 import Shop from "@/page/Shop/Shop";
 
 export const PublicRoute = [
@@ -13,6 +15,18 @@ export const PublicRoute = [
     path: "/shop",
     link: true,
     component: Shop,
+  },
+  {
+    name: "Cart",
+    path: "/cart",
+    link: true,
+    component: Cart,
+  },
+  {
+    name: "Product",
+    path: "/product/:id",
+    link: true,
+    component: ProductDetail,
   },
 ];
 

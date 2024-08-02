@@ -2,18 +2,20 @@ import { TypeProduct } from "@/models/model";
 
 
 export const handlefilterCategory = (data: TypeProduct[] = [], paramsFilter: string) => {
+    
+    if(paramsFilter.toLowerCase() === 'all'){
+        return data;
+    }
     return data.filter((e) => {
         const category = e.category.name.toLowerCase();
 
         switch (paramsFilter.toLowerCase()) {
-            case 'all':
-                return 'all';
             case 'chair':
-                return category === 'Chair';
+                return category === 'chair';
             case 'lamp':
-                return category === 'Lamp';
+                return category === 'lamp';
             case "sofa":
-                return category === "Sofa";
+                return category === "sofa";
             default:
                 return false;
         }

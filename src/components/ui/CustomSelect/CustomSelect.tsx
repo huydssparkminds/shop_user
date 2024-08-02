@@ -6,6 +6,7 @@ interface Props {
   optios: option[];
   LabelName: string;
   name: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 interface option {
@@ -13,14 +14,13 @@ interface option {
   name: string;
 }
 
-export function CustomSelect({ className, optios, LabelName, name }: Props) {
+export function CustomSelect({ className, optios, LabelName, name, onChange }: Props) {
   return (
     <div className={clsx("max-w-md", className)}>
       <div className="mb-2 block">
         <Label htmlFor={name} value={LabelName} />
       </div>
-      <Select id={name} className="font-bold" required>
-        <option>All product</option>
+      <Select id={name} onChange={onChange} className="font-bold" required>
         {optios &&
           optios.map((e) => (
             <option key={e.id} value={e.name}>

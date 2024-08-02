@@ -4,15 +4,15 @@
 .mainProdut {
     margin-top: 2rem;
 
-    .toolBar{
+    .toolBar {
         display: flex;
         gap: 20px;
-        max-width: 600px;
+        max-width: 400px;
         width: 100%;
         flex: 1;
     }
 
-    .listProducts{
+    .listProducts {
         margin-top: 2rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -23,5 +23,8 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 14px;
         }
+
+
+        
     }
 }

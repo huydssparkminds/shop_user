@@ -1,11 +1,14 @@
-.bannerNewsletter{
+@import "@/style/reponsive";
+
+.bannerNewsletter {
     width: 100%;
     height: 360px;
     background-image: url('/src/assets/img/bannernew.png');
-    // background-position: center;
     background-repeat: no-repeat;
-    object-fit: cover;
+    background-size: cover; /* Thay thế object-fit: cover; */
     margin-top: 2rem;
+    box-sizing: border-box;
+  
 
     .content{
         width: 540px;
@@ -19,6 +22,13 @@
         h3 {
             font-weight: 600;
             font-size: 40px;
+
+            @include respond-to(mobile) {
+                font-size: 24px;
+            }
+        }
+        @include respond-to(mobile) {
+            width: 100%;
         }
     }
 }

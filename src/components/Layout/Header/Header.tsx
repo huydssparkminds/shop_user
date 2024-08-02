@@ -9,28 +9,30 @@ import { NavRouter } from "@/router/route";
 import clsx from "clsx";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useCart } from "react-use-cart";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
-  
+
   const location = useLocation();
-  
+  const { totalUniqueItems } = useCart();
+
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY  > 50) {
+      if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
     };
-    
+
     window.addEventListener("scroll", onScroll);
-    
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  
+
   return (
-    <header className={clsx(style.header ,{ [style.scrolled]: scrolled } )}>
+    <header className={clsx(style.header, { [style.scrolled]: scrolled })}>
       <Container className={style.content}>
         <div className={style.logo}>
           <Link to="/">
@@ -62,10 +64,10 @@ const Header = () => {
           <button className={`${style.btnIcon} ${style.hideOnMobile}`}>
             <img src={iconSearch} alt="" />
           </button>
-          <button className={`${style.btnShopping} ${style.hideOnMobile}`}>
-            <div className={style.totalCart}>2</div>
+          <Link to='/cart' className={`${style.btnShopping} ${style.hideOnMobile}`}>
+            <div className={style.totalCart}>{totalUniqueItems}</div>
             <img src={iconshopping} alt="" />
-          </button>
+          </Link>
 
           <button className={style.btnBar}>
             <FaBars />

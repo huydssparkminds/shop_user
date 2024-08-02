@@ -10,7 +10,10 @@ export const REGEX_PASSWORD =
 // CateGORY
 
 export const Options_category = [
-  { id: 1, name: "Sofa" },
-  { id: 2, name: "Chair" },
-  { id: 3, name: "Lamp" },
+  { id: 1, name: "All" },
+  { id: 2, name: "Sofa" },
+  { id: 3, name: "Chair" },
+  { id: 4, name: "Lamp" },
 ];
+
+export const PERPAGES = [8, 4 ,12, 24]

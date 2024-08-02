@@ -2,14 +2,16 @@ import React from "react";
 import HeroShop from "./HeroShop/HeroShop";
 import Container from "@/components/block/container/Container";
 import MainProduct from "./MainProduct/MainProduct";
+import Banner from "@/components/block/Banner/Banner";
 
 const Shop = () => {
   return (
     <>
       <Container>
         <HeroShop />
-       <MainProduct />
+        <MainProduct />
       </Container>
+      <Banner />
     </>
   );
 };
