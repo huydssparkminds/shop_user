@@ -35,7 +35,6 @@ const authApi = {
     return axiosClient.post(url, userInfo);
   },
 
-  // Các phương thức khác như lấy thông tin người dùng, cập nhật thông tin người dùng, đăng xuất, vv. có thể được thêm vào đây.
 };
 
 export default authApi;

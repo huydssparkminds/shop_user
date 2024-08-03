@@ -1,3 +1,6 @@
+@import '@/style/reponsive';
+
+
 .NotificationBar{
     height: 40px;
     background-color: #F3F5F7;
@@ -22,5 +25,9 @@
         color: #376bdb;
         text-decoration: underline;
        
+    }
+
+    @include respond-to(mobile) {
+        font-size: 12px;
     }
 }

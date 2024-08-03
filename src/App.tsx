@@ -8,11 +8,13 @@ import Register from "./page/Auth/Register/Register";
 import { ToastContainer } from "react-toastify";
 import { PublicRoute } from "./router/route";
 import { Layout } from "./page";
+import ScrollToTop from "./utils/scrollTop";
 function App() {
   return (
     <>
       <ToastContainer />
       <Router>
+      <ScrollToTop />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

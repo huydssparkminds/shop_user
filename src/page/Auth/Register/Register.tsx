@@ -2,12 +2,14 @@ import CustomInput from "@/components/ui/CustomInput/CustomInput";
 import { REGEX_PASSWORD } from "@/constant";
 import { RootState } from "@/redux/store";
 import authApi from "@/services/authApi";
-import { Button, Spinner } from "flowbite-react";
 import {  useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Spinner } from "flowbite-react";
 
 const userSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email").required(),
@@ -33,9 +35,11 @@ const userSchema = Yup.object().shape({
     confirmpassword: string;
     username: string;
   }
+
+
 const Register = () => {
 
-
+  const Navigate = useNavigate();
  
   const loading = useSelector((state: RootState) => state.user.loading);
 
@@ -48,8 +52,21 @@ const Register = () => {
   });
 
   const onSubmit = async (data: RegisterUser) => {
-    const response = await authApi.register(data)
-    console.log("🚀 ~ onSubmit ~ response:", response)
+    try {
+        const response = await authApi.register(data)
+        if(response.status === 200) {
+          toast.success("tạo người dùng thành công")
+          Navigate("/login")
+        }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error(error.response?.data.data);
+        toast.error(error.response?.data.data);
+      } else {
+        console.error(error);
+      }
+    }
+ 
   };
 
   return (

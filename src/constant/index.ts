@@ -17,3 +17,29 @@ export const Options_category = [
 ];
 
 export const PERPAGES = [8, 4 ,12, 24]
+
+export const TABS = [
+  {
+    id: 1,
+    name: 'Shopping Cart'
+  },
+  {
+    id: 2,
+    name: 'Checkout details'
+  },
+  {
+    id: 3,
+    name: 'Order Complete'
+  },
+]
+
+export const BTN_SHIP = [
+  {
+    name: "Free shipping",
+    cost: 0.00,
+  },
+  {
+    name: "Express shipping",
+    cost: 15.00,
+  }
+]

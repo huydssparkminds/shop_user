@@ -10,6 +10,7 @@ type Init = {
   user: TypeUserStore | null;
   token: string | null;
   error: boolean;
+  isLoggin: boolean
 };
 
 const initialState: Init = {
@@ -17,6 +18,7 @@ const initialState: Init = {
   loading: false,
   token: userToken,
   user: userInfor,
+  isLoggin: false
 };
 
 const userSlice = createSlice({
@@ -28,6 +30,7 @@ const userSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+      state.isLoggin = true;
     },
     setToken: (state, action) => {
       state.token = action.payload;
@@ -38,11 +41,12 @@ const userSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.user = null;
+      state.isLoggin = false;
       localStorage.removeItem("userToken")
       localStorage.removeItem("userInfo");
     }
   },
 });
 
-export const { setLoading, setUser, setError, setToken } = userSlice.actions;
+export const { setLoading, setUser, setError, setToken , logout} = userSlice.actions;
 export default userSlice.reducer;
