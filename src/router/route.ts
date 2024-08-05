@@ -1,5 +1,6 @@
 import Cart from "@/page/Cart/Cart";
 import HomePage from "@/page/HomePage";
+import MyAccount from "@/page/MyAccount/MyAccount";
 import ProductDetail from "@/page/ProductDetail/ProductDetail";
 import Shop from "@/page/Shop/Shop";
 
@@ -27,6 +28,12 @@ export const PublicRoute = [
     path: "/product/:id",
     link: true,
     component: ProductDetail,
+  },
+  {
+    name: "MyAccount",
+    path: "/myaccount",
+    link: true,
+    component: MyAccount,
   },
 ];
 

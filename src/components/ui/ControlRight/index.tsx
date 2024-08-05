@@ -13,20 +13,25 @@ import { RootState } from "@/redux/store";
 const ControlRight = () => {
   const { totalUniqueItems } = useCart();
 
-  const isLoggin = useSelector((state: RootState) => state.user.isLoggin);
+  const isLoggin = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
 
   const renderIcon = () => {
     if (isLoggin) {
       return (
-        <Dropdown.Item onClick={() => dispatch(logout())} key="signout">
-          <p>Sign out</p>
-        </Dropdown.Item>
+        <>
+          <Dropdown.Item key="account">
+            <Link to={"/myaccount"}>My Account</Link>
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => dispatch(logout())} key="signout">
+            <p>Sign out</p>
+          </Dropdown.Item>
+        </>
       );
     } else {
       return (
         <Dropdown.Item key="login">
-          <Link to='/login'>Login</Link>
+          <Link to="/login">Login</Link>
         </Dropdown.Item>
       );
     }
@@ -44,7 +49,6 @@ const ControlRight = () => {
           />
         }
         inline>
-        <Dropdown.Item key="account">My Account</Dropdown.Item>
         <Dropdown.Divider />
         {renderIcon()}
       </Dropdown>

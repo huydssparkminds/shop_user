@@ -7,23 +7,33 @@ import iconUser from "@/assets/img/user-circle.png";
 import { useCart } from "react-use-cart";
 import { NavRouter } from "@/router/route";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { logout } from "@/redux/userSlice/UserSlice";
 
 interface HeaderMobileProps {
   handleCloseMobile: React.MouseEventHandler<HTMLButtonElement>;
   openMenu: boolean;
 }
 
-const HeaderMobile: React.FC<HeaderMobileProps> = ({ handleCloseMobile, openMenu }) => {
+const HeaderMobile: React.FC<HeaderMobileProps> = ({
+  handleCloseMobile,
+  openMenu,
+}) => {
   const { totalUniqueItems } = useCart();
-
+  const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch()
   return (
     <>
-      <div className={clsx(style.menuMobile,{[style.menuMobileOpen]: openMenu}  )}>
+      <div
+        className={clsx(style.menuMobile, {
+          [style.menuMobileOpen]: openMenu,
+        })}>
         <div className={style.headerMobile}>
           <Link className={style.logo} to={"/"}>
             Cyrus
           </Link>
-          
+
           <button onClick={handleCloseMobile} className={style.btnClose}>
             <IoClose color="#6C7275" />
           </button>
@@ -31,7 +41,7 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({ handleCloseMobile, openMenu
 
         <div className={style.navLink}>
           <ul>
-            {NavRouter.map((e,i) => (
+            {NavRouter.map((e, i) => (
               <li key={i}>
                 <Link to={e.path}>{e.title}</Link>
               </li>
@@ -39,12 +49,20 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({ handleCloseMobile, openMenu
           </ul>
         </div>
 
-        <div className={style.LoginMobile}>
-          <button className={style.btnLogin}>Login</button>
-        </div>
+        {user ? (
+          <div className={style.LoginMobile}>
+            <button onClick={() => dispatch(logout())} className={style.btnLogin}>Logout</button>
+          </div>
+        ) : (
+          <div className={style.LoginMobile}>
+            <button className={style.btnLogin}>
+              <Link to={'/login'}>Login</Link>
+            </button>
+          </div>
+        )}
 
         <div className={style.controlBottom}>
-            <button className={`${style.btnIcon} ${style.hideOnMobile}`}>
+          <button className={`${style.btnIcon} ${style.hideOnMobile}`}>
             <img src={iconUser} alt="" />
           </button>
           <button className={`${style.btnIcon} ${style.hideOnMobile}`}>

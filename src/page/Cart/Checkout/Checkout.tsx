@@ -78,86 +78,88 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
   };
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={style.contact}>
-        <h1>Contact Infomation</h1>
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4 ">
-            <div className="w-full">
+    <div className={style.formInfo}>
+        <div className={style.contact}>
+          <h1>Contact Infomation</h1>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-4 ">
+              <div className="w-full">
+                <CustomInput
+                  labelName="First Name"
+                  name="fname"
+                  placeholder="First name"
+                  register={register}
+                />
+                {errors.fname && (
+                  <small className="text-red-500">{errors.fname.message}</small>
+                )}
+              </div>
+              <div className="w-full">
+                <CustomInput
+                  labelName="Last Name"
+                  name="lname"
+                  placeholder="Last name"
+                  register={register}
+                />
+                {errors.lname && (
+                  <small className="text-red-500">{errors.lname.message}</small>
+                )}
+              </div>
+            </div>
+            <div>
               <CustomInput
-                labelName="First Name"
-                name="fname"
-                placeholder="First name"
+                labelName="Phone Number"
+                name="phone"
+                placeholder="Phone Number"
                 register={register}
               />
-              {errors.fname && (
-                <small className="text-red-500">{errors.fname.message}</small>
+  
+              {errors.phone && (
+                <small className="text-red-500">{errors.phone.message}</small>
+              )}
+            </div>
+            <div>
+              <CustomInput
+                labelName="Email Address"
+                name="email"
+                placeholder="Email Address"
+                register={register}
+              />
+              {errors.email && (
+                <small className="text-red-500">{errors.email.message}</small>
+              )}
+            </div>
+          </div>
+        </div>
+  
+        <div className={style.shipping}>
+          <h1>Shipping Address</h1>
+          <div className="flex flex-col gap-4">
+            <div className="w-full">
+              <CustomInput
+                labelName="Street Address"
+                name="address"
+                placeholder="Street Address"
+                register={register}
+              />
+              {errors.address && (
+                <small className="text-red-500">{errors.address.message}</small>
               )}
             </div>
             <div className="w-full">
               <CustomInput
-                labelName="Last Name"
-                name="lname"
-                placeholder="Last name"
+                labelName="Country"
+                name="country"
+                placeholder="Country"
                 register={register}
               />
-              {errors.lname && (
-                <small className="text-red-500">{errors.lname.message}</small>
+              {errors.country && (
+                <small className="text-red-500">{errors.country.message}</small>
               )}
             </div>
           </div>
-          <div>
-            <CustomInput
-              labelName="Phone Number"
-              name="phone"
-              placeholder="Phone Number"
-              register={register}
-            />
-
-            {errors.phone && (
-              <small className="text-red-500">{errors.phone.message}</small>
-            )}
-          </div>
-          <div>
-            <CustomInput
-              labelName="Email Address"
-              name="email"
-              placeholder="Email Address"
-              register={register}
-            />
-            {errors.email && (
-              <small className="text-red-500">{errors.email.message}</small>
-            )}
-          </div>
         </div>
-      </div>
-
-      <div className={style.shipping}>
-        <h1>Shipping Address</h1>
-        <div className="flex flex-col gap-4">
-          <div className="w-full">
-            <CustomInput
-              labelName="Street Address"
-              name="address"
-              placeholder="Street Address"
-              register={register}
-            />
-            {errors.address && (
-              <small className="text-red-500">{errors.address.message}</small>
-            )}
-          </div>
-          <div className="w-full">
-            <CustomInput
-              labelName="Country"
-              name="country"
-              placeholder="Country"
-              register={register}
-            />
-            {errors.country && (
-              <small className="text-red-500">{errors.country.message}</small>
-            )}
-          </div>
-        </div>
-      </div>
+    </div>
 
       <div className={style.btnOrder}>
         <Button type="submit" color={"dark"}>
