@@ -19,7 +19,7 @@ const MyOrder = () => {
       }
     };
     fetchOrder();
-  }, []);
+  }, [user]);
 
   return (
     <div className={style.myOrder}>
