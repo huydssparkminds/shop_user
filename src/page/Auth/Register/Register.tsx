@@ -97,8 +97,8 @@ const Register = () => {
                     labelName="User Name"
                     placeholder="User Name"
                     register={register}
+                    error={errors.username}
                   />
-                  {errors.username && <small className="text-red-500">{errors.username.message}</small>}
                 </div>
                 <div>
                   <CustomInput
@@ -106,9 +106,8 @@ const Register = () => {
                     labelName="Your Email"
                     placeholder="Your Email"
                     register={register}
+                    error={errors.email}
                   />
-                  {errors.email && <small className="text-red-500">{errors.email.message}</small>}
-
                 </div>
                 <div>
                   <CustomInput
@@ -117,8 +116,8 @@ const Register = () => {
                     placeholder="*****"
                     type="password"
                     register={register}
+                    error={errors.password}
                   />
-                  {errors.password && <small className="text-red-500">{errors.password.message}</small>}
                 </div>
                 <div>
                   <CustomInput
@@ -127,8 +126,8 @@ const Register = () => {
                     placeholder="******"
                     type="password"
                     register={register}
+                    error={errors.confirmpassword}
                   />
-                  {errors.confirmpassword && <small className="text-red-500">{errors.confirmpassword.message}</small>}
                 </div>
 
                 <Button type="submit" className="mx-auto w-full">

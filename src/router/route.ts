@@ -1,3 +1,4 @@
+import About from "@/page/aboutus/About";
 import Cart from "@/page/Cart/Cart";
 import HomePage from "@/page/HomePage";
 import MyAccount from "@/page/MyAccount/MyAccount";
@@ -34,6 +35,12 @@ export const PublicRoute = [
     path: "/myaccount",
     link: true,
     component: MyAccount,
+  },
+  {
+    name: "MyAccount",
+    path: "/contactus",
+    link: true,
+    component: About,
   },
 ];
 

@@ -1,10 +1,11 @@
 import { Label, TextInput } from "flowbite-react";
+import { FieldError } from "react-hook-form";
 
 interface CustomInputProps {
   labelName: string;
-  errors?: any;
   register: any;
   rules?: object;
+  error?: FieldError | undefined;
   name: string;
   type?: string;
   placeholder?: string;
@@ -15,13 +16,13 @@ const CustomInput = ({
   type = "text",
   placeholder,
   register,
+  error,
   ...rest
 }:CustomInputProps) => {
   return (
     <>
       <Label htmlFor={name} value={labelName} className="mb-2 block" />
       <TextInput
-        {...register("username", { required: true })}
         id={name}
         name={name}
         type={type}
@@ -29,6 +30,7 @@ const CustomInput = ({
         {...register(name)}
         placeholder={placeholder}
       />
+      {error && <small className="text-red-500">{error.message}</small>}
     </>
   );
 };

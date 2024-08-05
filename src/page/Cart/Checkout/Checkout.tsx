@@ -89,10 +89,8 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                   name="fname"
                   placeholder="First name"
                   register={register}
+                  error={errors.fname}
                 />
-                {errors.fname && (
-                  <small className="text-red-500">{errors.fname.message}</small>
-                )}
               </div>
               <div className="w-full">
                 <CustomInput
@@ -100,10 +98,8 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                   name="lname"
                   placeholder="Last name"
                   register={register}
+                  error={errors.lname}
                 />
-                {errors.lname && (
-                  <small className="text-red-500">{errors.lname.message}</small>
-                )}
               </div>
             </div>
             <div>
@@ -112,11 +108,8 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                 name="phone"
                 placeholder="Phone Number"
                 register={register}
+                error={errors.phone}
               />
-  
-              {errors.phone && (
-                <small className="text-red-500">{errors.phone.message}</small>
-              )}
             </div>
             <div>
               <CustomInput
@@ -124,10 +117,8 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                 name="email"
                 placeholder="Email Address"
                 register={register}
+                error={errors.email}
               />
-              {errors.email && (
-                <small className="text-red-500">{errors.email.message}</small>
-              )}
             </div>
           </div>
         </div>
@@ -141,10 +132,9 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                 name="address"
                 placeholder="Street Address"
                 register={register}
+                error={errors.address}
               />
-              {errors.address && (
-                <small className="text-red-500">{errors.address.message}</small>
-              )}
+            
             </div>
             <div className="w-full">
               <CustomInput
@@ -152,10 +142,8 @@ const Checkout = ({ setTabSelect, total, setOrderSucess }: Props) => {
                 name="country"
                 placeholder="Country"
                 register={register}
+                error={errors.country}
               />
-              {errors.country && (
-                <small className="text-red-500">{errors.country.message}</small>
-              )}
             </div>
           </div>
         </div>

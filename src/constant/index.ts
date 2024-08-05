@@ -3,8 +3,7 @@ import Checkout from "@/page/Cart/Checkout/Checkout";
 import OrderDetail from "@/page/Cart/OrderDetail/OrderDetail";
 import CartProducts from "@/page/Cart/progress1/Index";
 
-export const SESSTION_USER = "user";
-export const STORE_USER = sessionStorage.getItem("user");
+export const URL_SOCKET = 'wss://stream.binance.com:9443/ws/btcusdt@ticker'
 
 //REGEX
 

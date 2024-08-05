@@ -1,4 +1,4 @@
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import type { TypeLoginUser } from "@/models/model";
@@ -9,6 +9,16 @@ import { Spinner } from "flowbite-react";
 import type { RootState } from "@/redux/store";
 import authApi from "@/services/authApi";
 import { toast } from "react-toastify";
+import CustomInput from "@/components/ui/CustomInput/CustomInput";
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const userSchema = Yup.object().shape({
+  password: Yup.string().required("Password is required"),
+  username: Yup.string().required("Username is required"),
+});
+
+
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -19,26 +29,32 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TypeLoginUser>();
+  } = useForm<TypeLoginUser>({
+    resolver: yupResolver(userSchema)
+  });
 
   const onSubmit: SubmitHandler<TypeLoginUser> = async (data) => {
     dispatch(setLoading(true));
     try {
       const response = await authApi.login(data);
-      if(response.status === 200) {
+      if (response.status === 200) {
+        dispatch(setUser(response.data.data.user));
+        dispatch(setToken(response.data.data.token));
 
-        dispatch(setUser(response.data.data.user))
-        dispatch(setToken(response.data.data.token))
-
-        localStorage.setItem('userToken', JSON.stringify(response.data.data.token))
-        localStorage.setItem('userInfo', JSON.stringify(response.data.data.user))
+        localStorage.setItem(
+          "userToken",
+          JSON.stringify(response.data.data.token)
+        );
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(response.data.data.user)
+        );
 
         dispatch(setLoading(false));
 
-        toast.success("Đăng Nhập Thành công")
-        navigate('/')
-      }
-      else{
+        toast.success("Đăng Nhập Thành công");
+        navigate("/");
+      } else {
         toast.error("Đăng Nhập Không thành công");
         dispatch(setLoading(false));
       }
@@ -71,40 +87,23 @@ export const Login = () => {
                 className="space-y-4 md:space-y-6"
                 onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                  <Label
-                    htmlFor="username"
-                    value="User Name"
-                    className="mb-2 block"
-                  />
-                  <TextInput
-                    {...register("username", { required: true })}
-                    id="username"
-                    type="text"
+                  <CustomInput
+                    name="username"
+                    labelName="User Name"
                     placeholder="User Name"
+                    register={register}
+                    error={errors.username}
                   />
-                  {errors.username && (
-                    <small className="text-red-500">
-                      This field is required
-                    </small>
-                  )}
                 </div>
                 <div>
-                  <Label
-                    htmlFor="password"
-                    value="Password"
-                    className="mb-2 block"
-                  />
-                  <TextInput
-                    {...register("password", { required: true })}
-                    id="password"
-                    type="password"
+                <CustomInput
+                    name="password"
+                    labelName="Password"
                     placeholder="******"
+                    register={register}
+                    type="password"
+                    error={errors.password}
                   />
-                  {errors.password && (
-                    <small className="text-red-500">
-                      This field is required
-                    </small>
-                  )}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
