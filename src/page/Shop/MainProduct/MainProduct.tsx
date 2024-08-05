@@ -1,6 +1,5 @@
 import { CustomSelect } from "@/components/ui/CustomSelect/CustomSelect";
 import style from "./style.module.scss";
-import { Label, Select } from "flowbite-react";
 import { Options_category, PERPAGES } from "@/constant";
 import Card from "@/components/ui/Card/Card";
 import { useSelector } from "react-redux";
@@ -51,18 +50,13 @@ const MainProduct = () => {
           onChange={handleSearchParam}
         />
 
-        <div className=" md:w-[257px]">
-          <div className="mb-2 block">
-            <Label htmlFor="countries" value="Select PerPage" />
-          </div>
-          <Select id="countries" onChange={handleSetPerPage} required>
-            {PERPAGES.map((perpage:number, i:number) => (
-              <option value={perpage} key={i}>
-                {perpage}
-              </option>
-            ))}
-          </Select>
-        </div>
+        <CustomSelect
+          name="categori"
+          LabelName="Select Categories"
+          optios={PERPAGES}
+          className="flex-1"
+          onChange={handleSetPerPage}
+        />
       </div>
 
       <div className={style.listProducts}>

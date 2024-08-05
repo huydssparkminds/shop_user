@@ -11,7 +11,7 @@ interface Props {
 
 interface option {
   id: number;
-  name: string;
+  name: string | number;
 }
 
 export function CustomSelect({ className, optios, LabelName, name, onChange }: Props) {
