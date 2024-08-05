@@ -1,52 +1,64 @@
+@import "@/style/reponsive";
+
 .cartPage {
     margin-top: 60px;
-    .header{
+
+    .header {
         display: flex;
         font-size: 32px;
         font-weight: 600;
         gap: 10px;
     }
+
     .title {
         text-align: center;
         font-size: 46px;
         font-weight: 800;
+
+        @include respond-to(mobile) {
+            font-size: 24px;
+        }
     }
 
-    .main{
+    .main {
         display: flex;
-        .cartProduct{
+        padding-bottom: 2rem;
+        @include respond-to(mobile) {
+            flex-direction: column;
+        }
+        .cartProduct {
             margin: 1rem 0;
             flex: 1;
             margin-right: 1rem;
 
-            
-           
+
+
         }
 
-        .cartSumary{
+        .cartSumary {
             width: 400px;
             margin-left: 1rem;
             padding: 1rem;
 
-            h2{
+            h2 {
                 font-weight: 500;
                 font-size: 18px;
             }
 
-            .shipp{
+            .shipp {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 align-items: start;
                 padding: 1rem 0;
 
-                .btnShipping{
+                .btnShipping {
                     padding: 12px;
-                    border: 1px solid #6C7275; 
+                    border: 1px solid #6C7275;
                     width: 100%;
                     display: flex;
                     justify-content: space-between;
-                    border-radius:4px ;
+                    border-radius: 4px;
                     font-weight: 500;
 
                     &:hover {
@@ -54,20 +66,20 @@
                     }
                 }
 
-                .btnShipSelect{
+                .btnShipSelect {
                     background-color: #F3F5F7;
 
                 }
             }
 
-            .subtotal{
+            .subtotal {
                 display: flex;
                 justify-content: space-between;
                 padding-bottom: 1rem;
                 border-bottom: 1px solid #e3e8ea;
             }
 
-            .total{
+            .total {
                 display: flex;
                 justify-content: space-between;
                 padding-top: 1rem;
@@ -75,7 +87,7 @@
             }
 
 
-            .btnCheckout{
+            .btnCheckout {
                 margin-top: 1rem;
 
                 button {

@@ -1,0 +1,47 @@
+
+.form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin-top: 2rem;
+
+    padding-bottom: 3rem;
+    .contact{
+        padding: 1rem;
+        flex: 1;
+        border-radius: 4px;
+        border: 1px solid #e3e8ea;
+
+        h1{
+            font-weight: 600;
+            margin-bottom:1rem;
+            font-size: 18px;
+        }
+    }
+    .shipping{
+        padding: 1rem;
+        flex: 1;
+        margin-left: 1rem;
+        border-radius: 4px;
+        border: 1px solid #e3e8ea;
+
+        h1{
+            font-weight: 600;
+            margin-bottom:1rem;
+            font-size: 18px;
+        }
+    }
+    .btnOrder {
+        grid-column: 1 / -1; /* This makes the button span across the entire row */
+        grid-row: 2; /* This places the button in the second row */
+        display: flex;
+        justify-content: center; /* Centers the button horizontally */
+        align-items: center; /* Centers the button vertically */
+        margin: 2rem auto 0 auto;
+        width: 320px;
+
+        button{
+            width: 100%;
+        }
+    }
+}

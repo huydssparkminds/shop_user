@@ -1,3 +1,8 @@
+import { TypeOrderSucess } from "@/models/model";
+import Checkout from "@/page/Cart/Checkout/Checkout";
+import OrderDetail from "@/page/Cart/OrderDetail/OrderDetail";
+import CartProducts from "@/page/Cart/progress1/Index";
+
 export const SESSTION_USER = "user";
 export const STORE_USER = sessionStorage.getItem("user");
 
@@ -18,19 +23,35 @@ export const Options_category = [
 
 export const PERPAGES = [8, 4 ,12, 24]
 
-export const TABS = [
+
+interface TabProps {
+  setTabSelect: (tabId: number) => void;
+  setTotal: (total: number) => void;
+  total: number;
+  setOrderSucess: (data: TypeOrderSucess) => void;
+  orderSucess: TypeOrderSucess | null;
+}
+interface Tab {
+  id: number;
+  name: string;
+  component: React.ComponentType<TabProps>;
+}
+export const TABS:Tab[] = [
   {
     id: 1,
-    name: 'Shopping Cart'
+    name: 'Shopping Cart',
+    component: CartProducts
   },
   {
     id: 2,
-    name: 'Checkout details'
+    name: 'Checkout details',
+    component: Checkout
   },
   {
     id: 3,
-    name: 'Order Complete'
-  },
+    name: 'Order Complete',
+    component: OrderDetail
+  }
 ]
 
 export const BTN_SHIP = [
